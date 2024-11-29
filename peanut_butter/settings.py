@@ -153,6 +153,6 @@ environ.Env.read_env(env_file)
 env = environ.Env()
 
 # Retrieve environment variables
-API_KEY = env('API_KEY')
+API_KEY = env('API_KEY', default='default_api_key')
 INSTAGRAM_USERNAME = env('INSTAGRAM_USERNAME')
 INSTAGRAM_PASSWORD = env('INSTAGRAM_PASSWORD')
