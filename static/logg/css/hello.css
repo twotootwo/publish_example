@@ -20,11 +20,17 @@ body {
 }
 
 .content .welcome-message {
+  font-size: 20px;
+  color: #555;
+  margin-bottom: 40px;
+  font-weight: bold;
+  margin-top:0px;
+}
+.content .member {
   font-size: 18px;
   color: #555;
   margin-bottom: 40px;
 }
-
 .start-button {
   display: inline-block;
   padding: 20px 40px; /* 버튼 크기 증가 */
