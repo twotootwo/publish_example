@@ -1,0 +1,111 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.header {
+    background-color: white;
+    color: black;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.header span {
+    font-weight: normal;
+    color: #777;
+}
+
+.header nav a {
+    margin-left: 1rem;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.sidebar {
+    width: 20%;
+    background-color: #f8f8f8;
+    padding: 1rem;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+}
+
+.sidebar ul li {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar label {
+    cursor: pointer;
+}
+
+.content {
+    width: 80%;
+    padding: 1rem 2rem;
+}
+
+.recommended-ads,
+.ad-list-section {
+    margin-bottom: 2rem;
+}
+
+.ad-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+}
+
+.ad-item {
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.ad-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+}
+
+.ad-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+.ad-category {
+    font-size: 0.9rem;
+    color: #777;
+}

@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Page</title>
+    <link rel="stylesheet" href="{% static 'logg/css/mypage_adv.css' %}">
+</head>
+<body>
+    <div class="container">
+    <!-- Header -->
+    <header class="main-header">
+        <div class="left-header">
+            <h1>AdBridge <span>Advertiser</span></h1>
+        </div>
+
+    </header>
+
+    <!-- Form -->
+    <form class="form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- 표지 사진 -->
+        <label class="label">표지 사진</label>
+        <div class="image-box">
+            <div id="image-preview" class="placeholder"></div>
+            <input type="file" id="image-upload" name="profile" accept="image/*" onchange="previewImage(event)">
+            <label for="image-upload" class="upload-button">사진 추가</label>
+        </div>
+
+        <!-- 상품 카테고리 -->
+        <label class="label" for="category">상품 카테고리</label>
+        <select id="category" name="category" class="dropdown">
+            <option value="select">Select</option>
+            <option value="fashion">Fashion</option>
+            <option value="food">Food</option>
+            <option value="health">Health</option>
+            <option value="other">Other</option>
+        </select>
+
+        <!-- 광고하고 싶은 SNS -->
+        <label class="label" for="sns">광고하고 싶은 SNS</label>
+        <select id="sns" name="sns" class="dropdown">
+            <option value="select">Select</option>
+            <option value="instagram">Instagram</option>
+            <option value="youtube">Youtube</option>
+            <option value="other">Other</option>
+        </select>
+
+        <!-- 금액대 -->
+        <label class="label">금액대</label>
+        <div class="budget-section">
+            <input type="number" id="min-budget" name="min-budget" class="budget-input" placeholder="최소" value="{% if profile %}{{ profile.min_budget }}{% endif %}">
+            <span>만원</span>
+            <span class="budget-separator">~</span>
+            <input type="number" id="max-budget" name="max-budget" class="budget-input" placeholder="최대" value="{% if profile %}{{ profile.min_budget }}{% endif %}">
+            <span>만원</span>
+        </div>
+
+        <!-- 상세 정보 -->
+        <label class="label" for="details">상세정보</label>
+        <textarea id="details" class="textarea-box" name="text-box" placeholder="상세정보를 입력하세요">{% if profile %}{{ profile.text_box }}{% endif %}</textarea>
+
+        <!-- 저장 버튼 -->
+        <button type="submit" class="save-button">Save</button>
+    </form>
+</div>
+
+
+    <script>
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const previewBox = document.getElementById('image-preview');
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function () {
+                    previewBox.style.backgroundImage = `url('${reader.result}')`;
+                    previewBox.style.backgroundSize = 'cover';
+                    previewBox.style.backgroundPosition = 'center';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+</html>
+

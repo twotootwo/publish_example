@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdBridge Influencer</title>
+    <link rel="stylesheet" href="{% static 'logg/css/inf.css' %}">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <header class="sidebar-header">
+              <a href="/login/inf/">
+                  <h1>AdBridge <span>Influencer</span></h1>
+              </a>
+            </header>
+
+            <section class="filter-section">
+                <h2>Category</h2>
+                <ul>
+                    <li><label><input type="checkbox" name="category" value="cosmetic"> Cosmetic</label></li>
+                    <li><label><input type="checkbox" name="category" value="fashion"> Fashion</label></li>
+                    <li><label><input type="checkbox" name="category" value="food"> Food</label></li>
+                    <li><label><input type="checkbox" name="category" value="photo"> Photo</label></li>
+                    <li><label><input type="checkbox" name="category" value="health"> Health</label></li>
+                    <li><label><input type="checkbox" name="category" value="other"> Other</label></li>
+                </ul>
+            </section>
+            <section class="filter-section">
+                <h2>Price</h2>
+                <ul>
+                    <li><label><input type="checkbox" name="price" value="1"> ~10만원</label></li>
+                    <li><label><input type="checkbox" name="price" value="2"> 10만원 이상</label></li>
+                    <li><label><input type="checkbox" name="price" value="3"> 20만원 이상</label></li>
+                    <li><label><input type="checkbox" name="price" value="4"> 30만원 이상</label></li>
+                    <li><label><input type="checkbox" name="price" value="5"> 40만원 이상</label></li>
+                    <li><label><input type="checkbox" name="price" value="6"> 50만원 이상</label></li>
+                </ul>
+            </section>
+            <section class="filter-section">
+                <h2>SNS</h2>
+                <ul>
+                    <li><label><input type="checkbox" name="sns" value="instagram"> Instagram</label></li>
+                    <li><label><input type="checkbox" name="sns" value="youtube"> Youtube</label></li>
+                    <li><label><input type="checkbox" name="sns" value="other"> Other</label></li>
+                </ul>
+            </section>
+            <button id="apply-filters">필터 적용</button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header class="content-header">
+                <nav>
+                    <a href="/login/mypage/" class="nav-link">My Page</a>
+                </nav>
+            </header>
+
+
+            <section class="ad-list-section">
+                <ul id="ads-list" class="ad-list">
+                    {% for ad in ads %}
+                    <li class="ad-item">
+                        <div class="image-container">
+                            <a href="{%url 'detailView' ad.pk %}">
+                                <img src="{{ ad.thumbnail.url }}" alt="{{ ad.title }}">
+                            </a>
+                        </div>
+
+                        <p class="ad-title">광고주: {{ ad.title }}</p>
+                        <p class="ad-category">Category: {{ ad.category }}</p>
+                        <p class="ad-sns">SNS: {{ ad.sns }}</p>
+                        <p class="ad-budget">금액: {{ ad.min_budget }}만원 - {{ad.max_budget}}만원</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </section>
+        </main>
+    </div>
+
+
+    <script>
+    // 필터 적용 버튼 클릭 시 필터링된 광고 목록을 요청하는 함수
+    document.getElementById("apply-filters").addEventListener("click", function() {
+        const selectedPrices = [];
+        const selectedCategories = [];
+        const selectedSns = [];
+
+<!--        // 체크된 가격 범위 체크박스들을 가져와서 selectedPrices 배열에 추가-->
+<!--        const checkboxes = document.querySelectorAll('input[name="price"]:checked');-->
+<!--        checkboxes.forEach(function(checkbox) {-->
+<!--            selectedPrices.push(checkbox.value);-->
+<!--        });-->
+
+        // 가격 범위 체크박스 선택 처리
+        const priceCheckboxes = document.querySelectorAll('input[name="price"]:checked');
+        priceCheckboxes.forEach(function(checkbox) {
+            selectedPrices.push(checkbox.value);
+        });
+
+        // 카테고리 체크박스 선택 처리
+        const categoryCheckboxes = document.querySelectorAll('input[name="category"]:checked');
+        categoryCheckboxes.forEach(function(checkbox) {
+            selectedCategories.push(checkbox.value);
+        });
+
+        // SNS 체크박스 선택 처리
+        const snsCheckboxes = document.querySelectorAll('input[name="sns"]:checked');
+        snsCheckboxes.forEach(function(checkbox) {
+            selectedSns.push(checkbox.value);
+        });
+
+        // 가격 범위를 URL 파라미터로 전달하여 페이지 이동
+        let url = "/login/filter-ads/?";
+
+        selectedPrices.forEach(function(price) {
+            url += "price=" + price + "&";
+        });
+
+        // 카테고리 파라미터 추가
+        selectedCategories.forEach(function(category) {
+            url += "category=" + category + "&";
+        });
+        // SNS 파라미터 추가
+        selectedSns.forEach(function(sns) {
+            url += "sns=" + sns + "&";
+        });
+
+        // 마지막 '&' 제거
+        url = url.slice(0, -1);
+
+
+<!--        // URL 변경-->
+<!--        window.location.href = url;-->
+
+        // fetch로 서버에 요청 보내기
+        fetch(url)
+            .then(response => response.json())  // 응답을 JSON 형식으로 변환
+            .then(data => {
+                console.log("Fetched Data:", data);  // 확인용
+
+                const adsList = document.getElementById("ads-list");
+                adsList.innerHTML = '';  // 이전에 있던 광고 목록을 지우고 새로 갱신
+
+                // 응답받은 광고 데이터를 HTML로 추가
+                data.ads.forEach(ad => {
+                    const adElement = document.createElement("li");
+                    adElement.classList.add("ad-item");
+
+                    adElement.innerHTML = `
+                        <div class="image-container">
+                            <a href="/login/detail/${ad.pk}">
+                                <img src="${ad.thumbnail}" alt="${ad.title}">
+                            </a>
+                        </div>
+                        <p class="ad-title">광고주: ${ad.title}</p>
+                        <p class="ad-category">Category: ${ad.category}</p>
+                        <p class="ad-sns">SNS: ${ad.sns}</p>
+                        <p class="ad-budget">금액: ${ad.min_budget}만원 - ${ad.max_budget}만원</p>
+                    `;
+                    adsList.appendChild(adElement);
+                });
+            })
+            .catch(error => console.error("Error fetching data:", error));
+        });
+    </script>
+</body>
+</html>

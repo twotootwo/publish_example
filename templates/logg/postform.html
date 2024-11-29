@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdBridge Advertiser</title>
+    <link rel="stylesheet" href="{% static 'logg/css/postform.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <nav>
+                <a href="/login/adv/">
+                    <h1>AdBridge <span>Advertiser</span></h1>
+                </a>
+            </nav>
+
+            <nav>
+                <a href="/login/mypage_adv/" class="my-page-link">My Page</a>
+            </nav>
+        </header>
+
+        <form class="form-container" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- 표지 사진 -->
+            <div class="form-group">
+                <label for="thumbnail">표지 사진</label>
+                <div class="image-preview" id="thumbnailPreview"></div>
+                <input type="file" id="thumbnail" name="thumbnail" accept="image/*" onchange="previewImage(event, 'thumbnailPreview')">
+            </div>
+
+            <!-- 광고 글 제목 -->
+            <div class="form-group">
+                <label for="title">광고 글 제목</label>
+                <input type="text" id="title" name="ad-title" placeholder="광고 글 제목">
+            </div>
+
+            <!-- 광고 상품 -->
+            <div class="form-group">
+                <label>광고 상품</label>
+                <input type="text" id="product" name="ad-product" placeholder="광고 상품">
+            </div>
+
+            <!-- 카테고리 -->
+           <!-- 카테고리 -->
+            <div class="form-group">
+                <label >카테고리</label>
+                <select id="category" name="category">
+                    <option value="" disabled selected>Select</option>
+                    <option value="fashion">Fashion</option>
+                    <option value="food">Food</option>
+                    <option value="health">Health</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <!-- SNS -->
+            <div class="form-group">
+                <label ">SNS</label>
+                <select id="sns" name="sns">
+                    <option value="" disabled selected>Select</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="youtube">Youtube</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+
+            <!-- 광고 금액 -->
+            <div class="form-group">
+    <label >광고 금액</label>
+    <div class="budget-group">
+        <input type="text" id="min-budget" name="min_budget" placeholder="최소">
+        <span class="budget-separator">~</span>
+        <input type="text" id="max-budget" name="max_budget" placeholder="최대">
+        <span class="budget-unit">만원</span>
+    </div>
+</div>
+
+
+            <!-- 상세 정보 -->
+            <div class="form-group">
+                <label for="details">상세정보</label>
+                <textarea id="details" name="details" placeholder="상세정보"></textarea>
+            </div>
+
+            <!-- 제품 사진 -->
+            <div class="form-group">
+                <label for="detailsImage">제품 사진</label>
+                <div class="image-preview" id="detailsImagePreview"></div>
+                <input type="file" id="detailsImage" name="details_image" accept="image/*" onchange="previewImage(event, 'detailsImagePreview')">
+            </div>
+
+            <button type="submit" class="save-button">Save</button>
+        </form>
+    </div>
+
+    <script>
+        function previewImage(event, previewId) {
+            const preview = document.getElementById(previewId);
+            preview.style.backgroundImage = `url('${URL.createObjectURL(event.target.files[0])}')`;
+            preview.style.backgroundSize = "cover";
+            preview.style.backgroundPosition = "center";
+        }
+    </script>
+</body>
+</html>

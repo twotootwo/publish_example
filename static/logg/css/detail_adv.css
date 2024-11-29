@@ -1,0 +1,249 @@
+/* 기본 스타일 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+
+}
+
+
+
+/* Updated Header Style */
+header {
+    background-color: #000000; /* Black background */
+    color: white; /* White text */
+    display: flex;
+    justify-content: space-between; /* Align items to edges */
+    align-items: center;
+    padding: 10px 0; /* Add padding above and below */
+    margin: 0; /* Remove default margin */
+}
+
+header h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0; /* Remove default margin */
+    padding-left: 20px; /* Add left padding for readability */
+}
+
+header h1 span {
+    font-weight: normal;
+    color: gray; /* Light gray for the secondary text */
+}
+
+header .page-title {
+    font-size: 16px;
+    font-weight: normal;
+    color: #a87fff; /* Purple color for "My Page" */
+    margin: 0; /* Remove default margin */
+    padding-right: 20px; /* Add right padding for readability */
+}
+
+
+
+header span {
+    font-size: 16px;
+    margin-right: 10px;
+    color: white; /* 텍스트 색상: 흰색 */}
+
+header h2 {
+    font-size: 20px;
+    color: white; /* 텍스트 색상: 흰색 */
+    position: absolute;
+    top: 35px;
+    right: 40px;}
+
+.main {
+    padding: 20px;
+}
+
+.profile-container {
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    padding: 30px;
+    padding-left: 20%;
+    padding-right: 10%;
+    padding-bottom: 30px;
+    background-color: white;
+    margin: 20px 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-image img {
+    width: 230px;
+    height: 230px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #ff4f58;
+}
+.profile-info {
+    flex: 1; /* Takes remaining space */
+    padding-left: 30px; /* Space between image and text */
+}
+
+.profile-info h3 {
+    font-size: 24px; /* Heading font size */
+    color: #333; /* Dark text color for readability */
+    margin-bottom: 10px; /* Space below the heading */
+    font-weight: bold; /* Make the heading bold */
+}
+
+.profile-info p {
+    margin: 5px 0; /* Space between paragraphs */
+    color: #555; /* Slightly darker gray for better readability */
+}
+
+.profile-info strong {
+    font-weight: bold; /* Make labels bold */
+    color: #333; /* Dark text for labels */
+}
+
+.content {
+    font-size: 16px; /* Font size for content sections */
+    margin-top: 15px; /* Space before content */
+    color: #444; /* Color for the content */
+}
+
+.content-description {
+    font-weight: normal; /* Normal weight for descriptions */
+    font-size: 14px; /* Font size for descriptions */
+    color: #666; /* Medium gray for description text */
+    margin-left: 10px; /* Indent description for clarity */
+}
+
+button {
+    padding: 10px 15px; /* Button padding */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Button font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effects */
+    margin-top: 20px; /* Space above buttons */
+}
+
+button:first-of-type {
+    background-color: #ff4f58; /* Color for the "신청하기" button */
+    color: white; /* Text color */
+}
+
+button:first-of-type:hover {
+    background-color: #e03e47; /* Darker shade on hover */
+}
+
+button:last-of-type {
+    background-color: #007bff; /* Color for the "SNS 바로 가기" button */
+    color: white; /* Text color */
+    margin-left: 10px; /* Space between buttons */
+}
+
+button:last-of-type:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+.advertiser-stats {
+    background-color: white; /* 배경색 */
+    padding: 20px; /* 내부 여백 */
+    margin: 20px 0; /* 상하 여백 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+
+.stat-container {
+    display: grid; /* 그리드 레이아웃 사용 */
+    grid-template-columns: repeat(5, 1fr); /* 2열로 설정 */
+    gap: 20px; /* 항목 간격 */
+}
+
+.stat-item {
+    text-align: center; /* 텍스트 중앙 정렬 */
+    background-color: #f9f9f9; /* 항목 배경색 */
+    border: 1px solid #e0e0e0; /* 경계선 */
+    border-radius: 5px; /* 항목 모서리 둥글게 */
+    padding: 15px; /* 내부 여백 */
+    transition: transform 0.3s; /* 호버 시 변환 효과 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 추가적인 그림자 효과 */
+}
+
+.stat-item:hover {
+    transform: scale(1.05); /* 호버 시 확대 효과 */
+}
+
+.stat-title {
+    font-size: 16px; /* 제목 글꼴 크기 */
+    font-weight: bold; /* 제목을 볼드체로 */
+    color: #333; /* 제목 색상 */
+    margin-bottom: 10px; /* 제목 아래 여백 */
+}
+
+.stat-values {
+    display: flex; /* 플렉스박스 사용 */
+    flex-direction: column; /* 수직 정렬 */
+    align-items: center; /* 수평 중앙 정렬 */
+}
+
+.value {
+    font-size: 20px; /* 값 글꼴 크기 */
+    font-weight: bold; /* 값 볼드체로 */
+    color: #ff4f58; /* 값 색상 */
+    margin-top: 5px; /* 값 위 여백 */
+}
+
+.growth {
+    font-size: 13px; /* 성장률 글꼴 크기 */
+    padding-top: 5px; /* 성장률 위 여백 */
+    color: #777; /* 성장률 색상 */
+}
+
+
+/* 추가 스타일 (선택 사항) */
+.stat-item {
+    flex: 1; /* 항목이 균등하게 늘어나도록 설정 */
+    min-width: 150px; /* 최소 너비 설정 */
+}
+
+.profile-description {
+    background-color: white;
+    padding: 50px;
+    padding-left: 250px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-description p {
+    color: #555;
+}
+
+.advertiser-image {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 80px;
+}
+
+.advertiser-image img {
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    border-radius: 8px;
+    margin-top: 80px;
+    padding-bottom: 10px;
+    object-fit: contain; /* 이미지가 잘리지 않도록 수정 */
+
+}
+
+footer {
+    text-align: center;
+    background-color: #000000;
+    color: white;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}

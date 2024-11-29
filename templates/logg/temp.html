@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdBridge Advertiser</title>
+    <link rel="stylesheet" href="{% static 'logg/inf.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>AdBridge <span>Advertiser</span></h1>
+            <nav>
+                <a href="#" class="post-link">Post</a>
+                <a href="#" class="my-page-link">My Page</a>
+            </nav>
+        </header>
+
+        <aside class="sidebar">
+            <h2>Category</h2>
+            <ul>
+                {% for category in categories %}
+                <li>
+                    <label>
+                        <input type="checkbox" value="{{ category.id }}">
+                        {{ category.name }}
+                    </label>
+                </li>
+                {% endfor %}
+            </ul>
+
+            <h2>Price</h2>
+            <ul>
+                {% for price_range in price_ranges %}
+                <li>
+                    <label>
+                        <input type="checkbox" value="{{ price_range.id }}">
+                        {{ price_range.range }}
+                    </label>
+                </li>
+                {% endfor %}
+            </ul>
+
+            <h2>SNS</h2>
+            <ul>
+                {% for sns in sns_options %}
+                <li>
+                    <label>
+                        <input type="checkbox" value="{{ sns.id }}">
+                        {{ sns.name }}
+                    </label>
+                </li>
+                {% endfor %}
+            </ul>
+        </aside>
+
+        <main class="content">
+            <section class="recommended-ads">
+                <h2>추천 광고</h2>
+                <ul class="ad-list">
+                    {% for ad in recommended_ads %}
+                    <li class="ad-item">
+                        <img src="{{ ad.image_url }}" alt="{{ ad.title }}">
+                        <p class="ad-title">{{ ad.title }}</p>
+                        <p class="ad-category">{{ ad.category }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </section>
+
+            <section class="ad-list-section">
+                <h2>광고 목록</h2>
+                <ul class="ad-list">
+                    {% for ad in ads %}
+                    <li class="ad-item">
+                        <img src="{{ ad.image_url }}" alt="{{ ad.title }}">
+                        <p class="ad-title">{{ ad.title }}</p>
+                        <p class="ad-category">{{ ad.category }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
